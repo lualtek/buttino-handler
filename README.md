@@ -19,8 +19,8 @@ You can install the ButtinoHandler library through the Arduino Library Manager o
 
 1. Open the Arduino IDE.
 2. Go to **Sketch** -> **Include Library** -> **Manage Libraries**.
-3. In the Library Manager, search for "LualtekButtinoHandler".
-4. Click on the LualtekButtinoHandler library and click the **Install** button.
+3. In the Library Manager, search for "ButtinoHandler".
+4. Click on the ButtinoHandler library and click the **Install** button.
 
 ### Manual Installation
 

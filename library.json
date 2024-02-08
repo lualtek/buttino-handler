@@ -1,6 +1,6 @@
 {
-  "name": "LualtekButtinoHandler",
-  "version": "0.0.1",
+  "name": "ButtinoHandler",
+  "version": "0.0.2",
   "description": "Library for the Lualtek Button handler for RAK devices",
   "repository": {
     "type": "git",
