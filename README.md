@@ -65,10 +65,8 @@ void setup() {
 }
 ```
 
-NOTE: The `begin()` method takes an optional parameter to specify the pin number of the button. If you don't specify the pin number, the default pin number `WB_IO4` will be used.
+NOTE: The `begin()` method takes an optional parameter to specify the pin number of the button. If you don't specify the pin number, the default pin number `WB_IO4` will be used. 
 NOTE2: `pinMode` is set to `INPUT_PULLUP` by default.
-
-```c++
 
 #### Loop
 
