@@ -38,7 +38,7 @@ The ButtinoHandler library depends on the following libraries:
 
 ### Wiring
 
-1. Connect a the momentary button to the digital pin `WB_IO4` of the RAK3172.
+1. Connect a the momentary button to a digital pin (default: `WB_IO4`) of the RAK3172.
 2. Connect the RAK3172 to the pc using a USB cable.
 
 ### Library Initialization
@@ -61,9 +61,14 @@ In the `setup()` function, initialize the ButtinoHandler library by calling the 
 
 ```c++
 void setup() {
-  buttinoHandler.begin();
+  buttinoHandler.begin(WB_IO5);
 }
 ```
+
+NOTE: The `begin()` method takes an optional parameter to specify the pin number of the button. If you don't specify the pin number, the default pin number `WB_IO4` will be used.
+NOTE2: `pinMode` is set to `INPUT_PULLUP` by default.
+
+```c++
 
 #### Loop
 

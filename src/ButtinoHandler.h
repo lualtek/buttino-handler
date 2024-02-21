@@ -38,8 +38,9 @@ public:
   /**
    * @brief Begin the ButtinoHandler
    * It should be called in the setup() function of the Arduino sketch.
+   * @param pin The pin number of the button (default: BUTTINOHANDLER_PIN = WB_IO4)
    */
-  void begin();
+  void begin(int pin = BUTTINOHANDLER_PIN);
 
   /**
    * @brief Handle the button event
@@ -48,6 +49,7 @@ public:
   void handle();
 
 private:
+  int _pin = BUTTINOHANDLER_PIN;
 };
 
 #endif

@@ -36,16 +36,17 @@ void handleEvent(ace_button::AceButton *button, uint8_t eventType, uint8_t butto
   }
 }
 
-AceButton button(BUTTINOHANDLER_PIN);
+AceButton button;
 
 ButtinoHandler::ButtinoHandler()
 {
 }
 
-void ButtinoHandler::begin()
+void ButtinoHandler::begin(int pin = BUTTINOHANDLER_PIN)
 {
+  _pin = pin;
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(BUTTINOHANDLER_PIN, INPUT_PULLUP);
+  pinMode(_pin, INPUT_PULLUP);
 
   button.setEventHandler(handleEvent);
 
@@ -54,7 +55,7 @@ void ButtinoHandler::begin()
   buttonConfig->setFeature(ButtonConfig::kFeatureLongPress);
   buttonConfig->setLongPressDelay(BUTTINOHANDLER_REBOOT_DELAY);
 
-  api.system.sleep.setup(RUI_WAKEUP_FALLING_EDGE, BUTTINOHANDLER_PIN);
+  api.system.sleep.setup(RUI_WAKEUP_FALLING_EDGE, _pin);
   if (api.system.sleep.registerWakeupCallback(wakeupCallback) == false)
   {
     BUTTINOLOG("ButtinoHandler .begin()", "Create Wakeup Callback failed.");
