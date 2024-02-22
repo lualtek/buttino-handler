@@ -67,3 +67,10 @@ void ButtinoRAK::begin(int pin = BUTTINORAK_PIN)
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(_pin, INPUT_PULLUP);
 }
+
+void ButtinoRAK::begin()
+{
+  _pin = BUTTINORAK_PIN;
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(_pin, INPUT_PULLUP);
+}

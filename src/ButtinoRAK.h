@@ -42,6 +42,7 @@ public:
    * @param pin The pin number of the button (default: BUTTINORAK_PIN = WB_IO4)
    */
   void begin(int pin);
+  void begin();
 
 private:
   int _pin = BUTTINORAK_PIN;
