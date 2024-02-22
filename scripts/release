@@ -31,20 +31,21 @@ else
     exit 1
 fi
 
+newVersion="${major}.${minor}.${build}"
+
 # Update library.properties version
-sed -i '' "s/^version=.*/version=${major}.${minor}.${build}/" library.properties
+sed -i '' "s/^version=.*/version=${newVersion}/" library.properties
 
 # Update library.json (PlatformIO file) version
-sed -i '' "s/\"version\": \".*\"/\"version\": \"${major}.${minor}.${build}\"/" library.json
+sed -i '' "s/\"version\": \".*\"/\"version\": \"${newVersion}\"/" library.json
 
 # Update git to reflect changes
 # git add library.properties library.json
 git add --all
 
-git tag -a $newVersion -m "chore(release): Update version to ${major}.${minor}.${build}"
-git commit -m "chore(release): Update version to ${major}.${minor}.${build}"
+git tag -a $newVersion -m "chore(release): Update version to $newVersion"
+git commit -m "chore(release): Update version to $newVersion"
 git push --follow-tags
 
 # Echo the new version number
-newVersion="${major}.${minor}.${build}"
 echo "Release a new version: ${newVersion}"
