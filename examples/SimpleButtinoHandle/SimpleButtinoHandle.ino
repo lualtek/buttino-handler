@@ -1,6 +1,6 @@
-#include "ButtinoHandler.h"
+#include "ButtinoRAK.h"
 
-ButtinoHandler buttinoHandler;
+ButtinoRAK buttinoHandler;
 
 void setup()
 {
