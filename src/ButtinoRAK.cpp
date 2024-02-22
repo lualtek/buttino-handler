@@ -3,6 +3,7 @@
 int counterClick = 0;
 unsigned long lastClickTime = 0;
 unsigned long startLongPressTime = 0;
+int __pin;
 
 void wakeupCallback()
 {
@@ -11,7 +12,7 @@ void wakeupCallback()
 
   startLongPressTime = millis();
   // Check if reboot is requested while long pressing
-  while (digitalRead(BUTTINORAK_PIN) == LOW)
+  while (digitalRead(__pin) == LOW)
   {
     if (millis() - startLongPressTime > BUTTINORAK_REBOOT_DELAY)
     {
@@ -40,11 +41,11 @@ void wakeupCallback()
     counterClick = 0;
     while (1)
     {
-      api.system.sleep.setup(RUI_WAKEUP_FALLING_EDGE, BUTTINORAK_PIN);
+      api.system.sleep.setup(RUI_WAKEUP_FALLING_EDGE, __pin);
       api.system.sleep.all(0); // Set to sleep forever.
-      pinMode(BUTTINORAK_PIN, INPUT_PULLUP);
+      pinMode(__pin, INPUT_PULLUP);
       delay(BUTTINORAK_REBOOT_DELAY); // Long press to turn off/on, the long press time is 5s.
-      if (digitalRead(BUTTINORAK_PIN) == LOW)
+      if (digitalRead(__pin) == LOW)
       {
         BUTTINOLOG(F("ButtinoRAK .wakeupCallback()"), "Long pressed, rebooting...");
         api.system.reboot();
@@ -64,6 +65,7 @@ ButtinoRAK::ButtinoRAK()
 void ButtinoRAK::begin(int pin = BUTTINORAK_PIN)
 {
   _pin = pin;
+  __pin = _pin;
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(_pin, INPUT_PULLUP);
 }
@@ -71,6 +73,7 @@ void ButtinoRAK::begin(int pin = BUTTINORAK_PIN)
 void ButtinoRAK::begin()
 {
   _pin = BUTTINORAK_PIN;
+  __pin = _pin;
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(_pin, INPUT_PULLUP);
 }
