@@ -1,6 +1,6 @@
 {
   "name": "ButtinoHandler",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Library for the Lualtek Button handler for RAK devices",
   "repository": {
     "type": "git",
@@ -14,9 +14,6 @@
       "maintainer": true
     }
   ],
-  "dependencies": {
-    "AceButton": "^1.10"
-  },
   "license": "MIT",
   "frameworks": "arduino",
   "platforms": "ststm32"

@@ -28,12 +28,6 @@ You can install the ButtinoHandler library through the Arduino Library Manager o
 2. In the Arduino IDE, navigate to **Sketch** -> **Include Library** -> **Add .ZIP Library**.
 3. Select the downloaded ZIP file of the library and click **Open**.
 
-### Dependencies
-
-The ButtinoHandler library depends on the following libraries:
-
-- [AceButton (>= 1.10)](https://github.com/bxparks/AceButton): A flexible library for handling button presses and long presses.
-
 ### Usage
 
 ### Wiring
@@ -61,22 +55,12 @@ In the `setup()` function, initialize the ButtinoHandler library by calling the 
 
 ```c++
 void setup() {
-  buttinoHandler.begin(WB_IO5);
+  buttinoHandler.begin(WB_IO5); // or buttinoHandler.begin(); for default pin
 }
 ```
 
 NOTE: The `begin()` method takes an optional parameter to specify the pin number of the button. If you don't specify the pin number, the default pin number `WB_IO4` will be used. 
 NOTE2: `pinMode` is set to `INPUT_PULLUP` by default.
-
-#### Loop
-
-In the `loop()` function, call the `handle()` method to handle the button presses:
-
-```c++
-void loop() {
-  buttinoHandler.handle();
-}
-```
 
 ### NOTE on debugging
 
