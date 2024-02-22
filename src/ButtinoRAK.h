@@ -46,6 +46,8 @@ public:
 
 private:
   int _pin = BUTTINORAK_PIN;
+
+  void _begin();
 };
 
 #endif

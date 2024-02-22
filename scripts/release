@@ -1,0 +1,50 @@
+#!/bin/bash
+
+set -e
+
+# Get version from library.properties (Arduino file)
+version=$(grep '^version=' library.properties | cut -d'=' -f2)
+
+# Check if version is empty
+if [ -z "$version" ]; then
+    echo "Error: Version not found in library.properties."
+    exit 1
+fi
+
+# Extract version components
+major=$(echo "$version" | cut -d'.' -f1)
+minor=$(echo "$version" | cut -d'.' -f2)
+build=$(echo "$version" | cut -d'.' -f3)
+
+# Check parameter to see which number to increment
+if [[ "$1" == "minor" ]]; then
+    minor=$((minor + 1))
+    build=0
+elif [[ "$1" == "patch" ]]; then
+    build=$((build + 1))
+elif [[ "$1" == "major" ]]; then
+    major=$((major + 1))
+    minor=0
+    build=0
+else
+    echo "Usage: ./scripts/release [major/minor/patch]"
+    exit 1
+fi
+
+# Update library.properties version
+sed -i '' "s/^version=.*/version=${major}.${minor}.${build}/" library.properties
+
+# Update library.json (PlatformIO file) version
+sed -i '' "s/\"version\": \".*\"/\"version\": \"${major}.${minor}.${build}\"/" library.json
+
+# Update git to reflect changes
+# git add library.properties library.json
+git add --all
+
+git tag -a $newVersion -m "chore(release): Update version to ${major}.${minor}.${build}"
+git commit -m "chore(release): Update version to ${major}.${minor}.${build}"
+git push --follow-tags
+
+# Echo the new version number
+newVersion="${major}.${minor}.${build}"
+echo "Release a new version: ${newVersion}"

@@ -66,14 +66,19 @@ void ButtinoRAK::begin(int pin = BUTTINORAK_PIN)
 {
   _pin = pin;
   __pin = _pin;
-  pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(_pin, INPUT_PULLUP);
+  _begin();
 }
 
 void ButtinoRAK::begin()
 {
   _pin = BUTTINORAK_PIN;
   __pin = _pin;
+  _begin();
+}
+
+void ButtinoRAK::_begin()
+{
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(_pin, INPUT_PULLUP);
+  attachInterrupt(_pin, wakeupCallback, FALLING);
 }
