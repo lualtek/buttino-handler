@@ -41,7 +41,7 @@ public:
    * It should be called in the setup() function of the Arduino sketch.
    * @param pin The pin number of the button (default: BUTTINORAK_PIN = WB_IO4)
    */
-  void begin(int pin = BUTTINORAK_PIN);
+  void begin(int pin);
 
 private:
   int _pin = BUTTINORAK_PIN;
